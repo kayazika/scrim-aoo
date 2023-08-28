@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,5 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/event/show/{id}', [EventController::class, 'show']);
+Route::post('/event/store', [EventController::class, 'store']);
+Route::get('/event/create', [EventController::class, 'index']);
 
 require __DIR__.'/auth.php';
