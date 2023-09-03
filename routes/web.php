@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,22 +16,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//Home Page
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Dashboard
+Route::get('/dashboard', [EventController::class, 'list'])->middleware(['auth', 'verified'])->name('dashboard');
 
+//Auth
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/event/show/{id}', [EventController::class, 'show']);
-Route::post('/event/store', [EventController::class, 'store']);
-Route::get('/event/create', [EventController::class, 'index']);
+//Event
+//Route List Located in Dashboard Route
+Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
+Route::post('/event/store', [EventController::class, 'store'])->name('event.store');
+Route::get('/event/edit/{id}', [EventController::class, 'edit'])->name('event.edit');
+Route::post('/event/update/{id}', [EventController::class, 'update'])->name('event.update');
+Route::get('/event/destroy/{id}', [EventController::class, 'destroy'])->name('event.destroy');
+Route::get('/event/delete/{id}', [EventController::class, 'delete']);
 
-require __DIR__.'/auth.php';
+//Event Show (list teams)
+Route::get('/event/show/{id}', [TeamController::class, 'show'])->name('event.show');
+Route::get('/team/create/{id}', [TeamController::class, 'create'])->name('team.create');
+Route::post('/team/store/{id}', [TeamController::class, 'store']);
+
+//Search Engine
+Route::get('/event/{id}', [EventController::class, 'search']);
+
+
+
+
+
+require __DIR__ . '/auth.php';

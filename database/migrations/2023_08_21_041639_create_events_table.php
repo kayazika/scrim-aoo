@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('max_kill');
             $table->integer('user_id');
             $table->string('description');
+            $table->integer('random_id');
 
         });
     }
