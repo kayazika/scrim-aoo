@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Round;
 use App\Models\Team;
 use Auth;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 class EventController extends Controller
 {
     //Create Event
-    public function create(Request $request)
+    public function create()
     {
         return view('event.create');
     }
@@ -35,28 +36,30 @@ class EventController extends Controller
         $id = auth()->user()->id;
         $events = Event::get()->where('user_id', $id);
         return view('dashboard', ['events' => $events]);
-        //dd($events);
     }
     //Delete Event Request
     public function destroy($id)
     {
         return redirect('/event/delete/' . $id);
-        //dd($id);
     }
     //Delete Event Function
     public function delete($id)
     {
         $event = Event::findOrFail($id);
+        $team = Team::where('event_id', $id);
+        $round = Round::where('event_id', $id);
         $event->delete();
+        $team->delete();
+        $round->delete();
         return redirect('/dashboard');
-        //dd($id);
     }
     //Edit Event Show
     public function edit($id)
     {
         $events = Event::findOrFail($id);
-        return view('event.edit', ['events' => $events]);
-        //dd( $id);
+        $teams = Team::where('event_id', $events->id)->get();
+        //dd($events, $teams);
+        return view('event.edit', ['events' => $events, 'teams' => $teams]);
     }
     //Update Event
     public function update(Request $request, $id)
@@ -68,19 +71,6 @@ class EventController extends Controller
             'description' => $request->description
         ]);
         return redirect('event/show/' . $id);
-        //dd($event);
     }
-    //Search Engine
-    public function search($id)
-    {
-        $events = Event::get()->where('random_id', $id);
-        $event_id = $events[0]->id;
-        $teams = Team::get()->where('event_id', $event_id);
-        if (empty($events)) {
-            return view('/dashboard');
-        } else {
-            return view('event.show', ['events' => $events[0], 'teams' => $teams]);
-            //dd($events, $teams);
-        }
-    }
+
 }
