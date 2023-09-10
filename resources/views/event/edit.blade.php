@@ -1,27 +1,55 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        @include('event.nav')
+        <h2 class="flex content-center mt-6 font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <a class="mr-3 " href="/event/show/{{ $events->id }}">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width: 2rem" fill="none" viewBox="0 0 24 24"
+                    strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+            </a>
             {{ __('Edit Event') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex justify-center p-6 text-gray-900 dark:text-gray-100">
 
                     <div class="justify-center w-full max-w-xs">
-                        <form action="{{ route('event.update', ['id' => $events->id]) }}" class="text-center w-full max-w-sm" method="POST">
+                        <form action="{{ route('event.update', ['id' => $events->id]) }}" class="w-full max-w-sm"
+                            method="POST">
                             @csrf
-                            <label for="name">Event Name</label> <br>
-                            <input class="text-black" type="text" name="name" value="{{ $events->name }}">   <br>
-                            <label for="kill">Max Kill</label> <br>
-                            <input class="text-black" type="number" name="kill" value="{{ $events->max_kill }}"> <br>
-                            <label for="description">Description</label><br>
-                            <input class="px-3 py-10 text-black" type="textarea" name="description" value="{{ $events->description }}"><br>
-                            <x-primary-button class="mt-2" >
-                                {{ __('update') }}
-                            </x-primary-button>
+                            <div class="mb-5">
+                                <x-input-label for="name" :value="__('Event Name')" />
+                                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
+                                    value="{{ $events->name }}" required autofocus autocomplete="Event Name" />
+                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            </div>
+                            <div class="mb-5">
+                                <x-input-label for="kill" :value="__('Max Kill')" />
+                                <x-text-input id="kill" class="block mt-1 w-full" type="number" name="kill"
+                                    value="{{ $events->max_kill }}" required autofocus autocomplete="Max Kill" />
+                                <x-input-error :messages="$errors->get('kill')" class="mt-2" />
+                            </div>
+                            <div class="mb-5">
+                                <x-input-label for="description" :value="__('Description')" />
+                                <x-text-input id="description" class="block mt-1 w-full" type="text"
+                                    name="description" value="{{ $events->description }}" required autofocus
+                                    autocomplete="description" />
+                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            </div>
+                            <div class="flex justify-between">
+                                <x-primary-button>
+                                    {{ __('update') }}
+                                </x-primary-button>
+                                <x-danger-button>
+
+                                    <a href="{{ route('event.destroy', ['id' => $events->id]) }}">DELETE EVENT</a>
+
+                                </x-danger-button>
+                            </div>
                         </form>
 
                     </div>
