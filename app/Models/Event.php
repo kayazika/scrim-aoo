@@ -11,6 +11,6 @@ class Event extends Model
     protected $fillable = ['name', 'max_kill', 'user_id', 'description', 'id', 'random_id'];
 
     public function team(){
-        return $this->hasMany(Team::class);
+        return $this->hasMany(Team::class, Round::class);
     }
 }
