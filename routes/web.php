@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\RoundController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,8 +47,10 @@ Route::get('/event/show/{id}', [TeamController::class, 'show'])->name('event.sho
 Route::get('/team/create/{id}', [TeamController::class, 'create'])->name('team.create');
 Route::post('/team/store/{id}', [TeamController::class, 'store']);
 
-//Search Engine
-Route::get('/event/{id}', [EventController::class, 'search']);
+//Round
+Route::get('/event/round/{id}', [RoundController::class, 'create'])->name('round.create');
+Route::post('/event/round/store/{id}', [RoundController::class, 'store'])->name('round.store');
+
 
 
 
