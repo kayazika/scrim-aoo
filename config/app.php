@@ -16,11 +16,11 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Scrim Org'),
 
     /*
     |--------------------------------------------------------------------------
-    | Application Environment
+    | Application Environments
     |--------------------------------------------------------------------------
     |
     | This value determines the "environment" your application is currently
