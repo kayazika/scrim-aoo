@@ -82,6 +82,11 @@ class RoundController extends Controller
                 $team_id = $request->input('team_id_' . $i);
                 //get team kill for new round
                 $kill = $request->input('team_kill_' . $i);
+                //check kill variable is null, if true kill receive 0
+                if ($kill == null){
+                    $kill = 0;
+                    return $kill;
+                }
                 //get position for new round
                 $position = $request->input('team_position_' . $i);
                 //calculate max kill to sum at the posistion point
@@ -127,6 +132,10 @@ class RoundController extends Controller
                 $team_name = $request->input('team_name_' . $i);
                 //get round kill
                 $kill = $request->input('team_kill_' . $i);
+                //check kill variable is null, if true kill receive 0
+                if ($kill == null){
+                    $kill = 0;
+                 }
                 //get round positio
                 $postion = $request->input('team_position_' . $i);
                 //calculate max kill to sum at the posistion point

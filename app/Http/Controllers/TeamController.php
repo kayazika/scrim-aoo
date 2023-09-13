@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Models\Event;
 use App\Models\Round;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class TeamController extends Controller
 {
@@ -50,5 +51,19 @@ class TeamController extends Controller
         }
         //return to event view
         return redirect('/event/show/' . $id);
+    }
+
+    public function delete($id, $team_id)
+    {
+        $team = Team::where('id', $team_id);
+        $round = Round::where('team_id', $team_id);
+        if(empty($round)){
+            $team->delete();
+        } else {
+            $team->delete();
+            $round->delete();
+        }
+
+        return redirect('event/edit/' . $id);
     }
 }
