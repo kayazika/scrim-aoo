@@ -42,10 +42,11 @@ Route::post('/event/update/{id}', [EventController::class, 'update'])->name('eve
 Route::get('/event/destroy/{id}', [EventController::class, 'destroy'])->name('event.destroy');
 Route::get('/event/delete/{id}', [EventController::class, 'delete']);
 
-//Event Show (list teams)
+//Team (list teams)
 Route::get('/event/show/{id}', [TeamController::class, 'show'])->name('event.show');
 Route::get('/team/create/{id}', [TeamController::class, 'create'])->name('team.create');
 Route::post('/team/store/{id}', [TeamController::class, 'store']);
+Route::get('/team/delete/{id}/{team_id}', [TeamController::class, 'delete']);
 
 //Round
 Route::get('/event/round/{id}', [RoundController::class, 'create'])->name('round.create');
