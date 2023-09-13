@@ -1,7 +1,7 @@
 <div class="flex justify-center align-middle">
 
     <div>
-        <img style="max-height: 8rem" class="rounded-full" src="/eventLogo.png" alt="event image">
+        <img style="max-height: 8rem" class="rounded-full" src="/favicon.svg" alt="event image">
     </div>
 
     <div class="pl-3">
