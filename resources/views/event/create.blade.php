@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="flex font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="flex justify-center font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             <a class="mr-3" href="/dashboard">
                 <svg xmlns="http://www.w3.org/2000/svg" style="width: 2rem" fill="none" viewBox="0 0 24 24"
                     strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

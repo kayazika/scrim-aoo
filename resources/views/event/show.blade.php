@@ -7,10 +7,10 @@
 
     <div class="py-6">
 
-        <div class="justify-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="flex justify-center max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <div class="flex justify-center bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div>
+                <div class="flex ">
                     @if (count($teams) < 1)
 
                         <p class="px-9 py-9 md:text-dark dark:text-white">
