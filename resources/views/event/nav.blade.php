@@ -38,21 +38,19 @@
 
             </x-secondary-button>
 
-            @if (count($teams) >= 20)
-            @else
-                <x-primary-button class="mt-3">
 
-                    <a href="/team/create/{{ $events->id }}">Register Teams</a>
+            <x-primary-button class="mt-3">
 
-                </x-primary-button>
-            @endif
-            @if (count($teams) > 1)
-                <x-green-button class="mt-3">
+                <a href="/team/create/{{ $events->id }}">Register Teams</a>
 
-                    <a href="/event/round/{{ $events->id }}">New round</a>
+            </x-primary-button>
 
-                </x-green-button>
-            @endif
+
+            <x-green-button class="mt-3">
+
+                <a href="/event/round/{{ $events->id }}">New round</a>
+
+            </x-green-button>
         @endif
 
     </div>
