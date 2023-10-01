@@ -19,7 +19,7 @@ class TeamController extends Controller
         //get event data
         $events = Event::get()->where('id', $request->id)->first();
         //get round data
-        $rounds = Round::where('event_id', $id)->orderBy('point', 'DESC',)->orderBy('kill', 'DESC',)->get()->toArray();
+        $rounds = Round::where('event_id', $id)->orderBy('match_point_winner', 'DESC')->orderBy('point', 'DESC',)->orderBy('kill', 'DESC',)->get()->toArray();
         //return view with data of event and teams
         return view('event.show', ['teams' => $teams, 'events' => $events, 'rounds' => $rounds]);
     }

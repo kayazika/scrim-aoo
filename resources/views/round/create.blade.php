@@ -33,19 +33,19 @@
                                     <div @class(['pb-4', 'bg-gray-300', 'dark:bg-gray-700', 'font-bold', 'mb-4', 'mx-4', 'rounded'])>
                                         <x-input-label class="mb-2 pt-2 ml-4" for="Team Name" value="{{ $team['team_name'] }}" />
 
-                                        <x-input-label for="team_id_{{ $i  }}" />
+
                                         <x-text-input type="hidden" value="{{ $team['id'] }}"
                                             name="team_id_{{ $i }}" />
 
-                                        <x-input-label for="team_id_{{ $i  }}" />
+
                                         <x-text-input type="hidden" value="{{ $team['team_name'] }}"
                                             name="team_name_{{ $i }}" />
 
-                                        <x-input-label for="actual_team_kill_{{ $i  }}" />
+
                                         <x-text-input type="hidden" value="{{ $team['kill'] }}"
                                             name="actual_team_kill_{{ $i }}" />
 
-                                        <x-input-label for="actual_team_point{{ $i  }}" />
+
                                         <x-text-input type="hidden" value="{{ $team['point'] }}"
                                             name="actual_team_point_{{ $i }}" />
 

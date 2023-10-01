@@ -61,6 +61,15 @@ class RoundController extends Controller
         }
     }
 
+    public function matchPoint($actual_team_point, $position)
+    {
+        if($actual_team_point >= 50 && $position == 1){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+
     //Store rounds
     public function store($id, Request $request)
     {
@@ -97,6 +106,8 @@ class RoundController extends Controller
                 $points = $position_points + $total_kill;
                 //get actual team points
                 $actual_team_point = $request->input('actual_team_point_' . $i);
+                //check match point winner
+                $match_point_winner = $this->matchPoint($actual_team_point, $position);
                 //sum actual team points with new round points
                 $point_sum = $points + $actual_team_point;
                 //get actual team kills
@@ -104,11 +115,12 @@ class RoundController extends Controller
                 //sum actual team kills with new round kills
                 $kill_sum = $kill + $actual_team_kill;
                 //create db update variable
-                $round = Round::where('team_id', $team_id);
+                $round = Round::where('event_id', $id)->where('team_id', $team_id);
                 //call and execute the update
                 $round->update([
                     'kill' => $kill_sum,
-                    'point' => $point_sum
+                    'point' => $point_sum,
+                    'match_point_winner' => $match_point_winner
                 ]);
             }
             //return to event displaing update table
@@ -150,7 +162,8 @@ class RoundController extends Controller
                     'team_id' => $team_id,
                     'team_name' => $team_name,
                     'kill' => $kill,
-                    'point' => $points
+                    'point' => $points,
+                    'match_point_winner' => 0
                 ]);
             }
             //return to event displaing update table

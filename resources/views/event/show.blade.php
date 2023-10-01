@@ -42,7 +42,10 @@
 
                                 @else
                                 @foreach ($rounds as $round)
-                                <tr class="text-center text-black dark:text-white even:bg-gray-300 odd:bg-gray-400 dark:even:bg-gray-700 dark:odd:bg-gray-800">
+                                <tr @if ($round['match_point_winner'] == 1)
+                                    class="text-center text-black dark:text-white bg-green-500"
+                                    @endif
+                                    class="text-center text-black dark:text-white even:bg-gray-300 odd:bg-gray-400 dark:even:bg-gray-700 dark:odd:bg-gray-800">
                                     <td class="px-9 py-1">{{ $loop->iteration }}</td>
                                     <td class="px-9 py-1">{{ $round['team_name'] }}</td>
                                     <td class="px-9 py-1">{{ $round['kill'] }}</td>

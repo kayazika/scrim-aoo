@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('team_name');
             $table->integer('kill');
             $table->integer('point');
+            $table->integer('match_point_winner');
         });
     }
 
