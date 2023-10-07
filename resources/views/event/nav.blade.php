@@ -7,48 +7,48 @@
     <div class="pl-3">
 
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $events->name }}
+            {{ $event['name'] }}
 
         </h2>
 
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $events->description }}
+            {{ $event['description'] }}
         </h2>
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Max Kill: {{ $events->max_kill }}
+            Max Kill: {{ $event['max_kill'] }}
         </h2>
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Public ID: {{ $events->random_id }}
+            Public ID: {{ $event['random_id'] }}
         </h2>
 
-        @if (Auth::user()->id == $events->user_id)
+        @if (Auth::user()->id == $event['user_id'])
 
             @if (Route::is('event.show'))
             @else
                 <x-primary-button class="mt-3">
 
-                    <a href="{{ route('event.show', ['id' => $events->id]) }}">back</a>
+                    <a href="{{ route('event.show', ['id' => $event['id']]) }}">back</a>
 
                 </x-primary-button>
             @endif
 
             <x-secondary-button class="mt-3">
 
-                <a href="{{ route('event.edit', ['id' => $events->id]) }}">Edit event</a>
+                <a href="{{ route('event.edit', ['id' => $event['id']]) }}">Edit event</a>
 
             </x-secondary-button>
 
 
             <x-primary-button class="mt-3">
 
-                <a href="/team/create/{{ $events->id }}">Register Teams</a>
+                <a href="/team/create/{{ $event['id'] }}">Register Teams</a>
 
             </x-primary-button>
 
 
             <x-green-button class="mt-3">
 
-                <a href="/event/round/{{ $events->id }}">New round</a>
+                <a href="/event/round/{{ $event['id'] }}">New round</a>
 
             </x-green-button>
         @endif

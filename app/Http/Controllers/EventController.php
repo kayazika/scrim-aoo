@@ -29,7 +29,7 @@ class EventController extends Controller
     public function list()
     {
         $events = $this->eventService->listEvent();
-        return view('dashboard', ['events' => $events]);
+        return view('dashboard', ['event' => $events]);
     }
 
     //Delete Event Request
@@ -51,7 +51,7 @@ class EventController extends Controller
         $data = $this->eventService->editEvent($id);
         $events = $data[0];
         $teams = $data[1];
-        return view('event.edit', ['events' => $events, 'teams' => $teams]);
+        return view('event.edit', ['event' => $events, 'teams' => $teams]);
     }
 
     //Update Event

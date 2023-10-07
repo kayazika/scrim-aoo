@@ -12,16 +12,16 @@
 
 
 
-            @foreach ($events as $event)
+            @foreach ($event as $data)
                 @csrf
 
-                <a href="/event/show/{{ $event->id }}">
+                <a href="/event/show/{{ $data['id'] }}">
                     <div
                         class=" hover:bg-sky-700 m-6 p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-1 text-gray-900 dark:text-gray-100">
-                            <h1>{{ $event->name }}</h1>
-                            <p>Description: {{ $event->description }}</p>
-                            <p>Max Kill: {{ $event->max_kill }}</p>
+                            <h1>{{ $data['name'] }}</h1>
+                            <p>Description: {{ $data['description'] }}</p>
+                            <p>Max Kill: {{ $data['max_kill'] }}</p>
                         </div>
                     </div>
                 </a>
