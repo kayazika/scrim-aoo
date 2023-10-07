@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Team;
-use App\Models\Event;
-use App\Models\Round;
 use App\Services\TeamService;
 use Illuminate\Http\Request;
 
@@ -19,14 +15,14 @@ class TeamController extends Controller
     public function show($id)
     {
         $data = $this->teamService->show($id);
-        return view('event.show', ['events' => $data[0], 'teams' => $data[1], 'rounds' => $data[2]]);
+        return view('event.show', ['event' => $data[0], 'teams' => $data[1], 'rounds' => $data[2]]);
     }
 
     //call create teams view
     public function create($id)
     {
         $events = $this->teamService->create($id);
-        return view('team.create', ['events' => $events]);
+        return view('team.create', ['event' => $events]);
     }
 
     //store teams of respective event

@@ -5,7 +5,7 @@
 
                 <div class="w-full max-w-xs">
 
-                    <form action="/team/store/{{ $events->id }}" class="w-full max-w-sm" method="POST">
+                    <form action="/team/store/{{ $event['id'] }}" class="w-full max-w-sm" method="POST">
                         @csrf
 
                         @for ($i = 1; $i <= 20; $i++)
