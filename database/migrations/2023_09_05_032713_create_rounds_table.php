@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('rounds', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->integer('event_id');
+            $table->foreignId('event_id');
             $table->integer('team_id');
             $table->string('team_name');
             $table->integer('kill');
             $table->integer('point');
-            $table->integer('match_point_winner');
+            $table->integer('round');
+            $table->integer('position');
+            $table->timestamps();
         });
     }
 

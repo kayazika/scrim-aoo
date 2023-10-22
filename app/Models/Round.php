@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Round extends Model
 {
-    protected $fillable = ['id', 'event_id', 'team_id', 'team_name', 'kill', 'point', 'match_point_winner'];
+    protected $fillable = ['id', 'event_id', 'team_id', 'team_name', 'kill', 'point', 'round', 'position'];
     public function round(): BelongsTo
     {
         return $this->belongsTo(Event::class);
