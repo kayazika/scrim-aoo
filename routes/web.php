@@ -44,6 +44,7 @@ Route::get('/event/delete/{id}', [EventController::class, 'delete']);
 
 //Team (list teams)
 Route::get('/event/show/{id}', [TeamController::class, 'show'])->name('event.show');
+Route::get('/event/rounds/{id}', [TeamController::class, 'rounds'])->name('event.rounds');
 Route::get('/team/create/{id}', [TeamController::class, 'create'])->name('team.create');
 Route::post('/team/store/{id}', [TeamController::class, 'store']);
 Route::get('/team/delete/{id}/{team_id}', [TeamController::class, 'delete']);

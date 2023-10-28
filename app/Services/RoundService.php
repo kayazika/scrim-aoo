@@ -68,6 +68,16 @@ class RoundService
         }
     }
 
+    public function matchPointWinner($total_point, $position){
+        if ($total_point >= 50 && $position == 1) {
+            $result = 1;
+            return $result;
+        } else {
+            $result = 0;
+            return $result;
+        }
+
+    }
     public function sumRounds($total_round, $new_array): array
     {
         $result = array();
@@ -89,8 +99,13 @@ class RoundService
             if (!isset($result[$teamId])) {
                 $result[$teamId] = $item;
             } else {
+                $total_point = $result[$teamId]['point'];
+                $position = $item['position'];
+                $match_point_winner = $this->matchPointWinner($total_point, $position);
                 $result[$teamId]['point'] += $item['point'];
                 $result[$teamId]['kill'] += $item['kill'];
+                $result[$teamId]['match_point_winner'] = $match_point_winner;
+
             }
         }
 
@@ -121,6 +136,7 @@ class RoundService
                 $total_round->update([
                     'kill' => $data['kill'],
                     'point' => $data['point'],
+                    'match_point_winner' => $data['match_point_winner'],
                 ]);
             }
         }
@@ -174,6 +190,7 @@ class RoundService
                 'team_name' => $team_name,
                 'kill' => $kill,
                 'point' => $points,
+                'position' => $position
             );
         }
         $this->totalRound($new_array);

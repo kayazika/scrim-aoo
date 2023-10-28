@@ -1,8 +1,8 @@
 <div class="flex justify-center align-middle">
 
-    <div>
+    {{-- <div>
         <img style="max-height: 8rem" class="rounded-full" src="/favicon.svg" alt="event image">
-    </div>
+    </div> --}}
 
     <div class="pl-3">
 
@@ -21,17 +21,23 @@
             Public ID: {{ $event['random_id'] }}
         </h2>
 
-        @if (Auth::user()->id == $event['user_id'])
+        @if (!Route::is('event.show'))
+            <x-primary-button class="mt-3">
 
-            @if (Route::is('event.show'))
-            @else
-                <x-primary-button class="mt-3">
+                <a href="{{ route('event.show', ['id' => $event['id']]) }}">back</a>
 
-                    <a href="{{ route('event.show', ['id' => $event['id']]) }}">back</a>
+            </x-primary-button>
+        @endif
 
-                </x-primary-button>
-            @endif
+        <x-secondary-button class="mt-3">
 
+            <a href="/event/rounds/{{ $event['id'] }}">Rounds</a>
+
+        </x-secondary-button>
+
+        {{-- @if (Auth::user()->id == $event['user_id']) --}}
+        @if (Auth::guest())
+        @elseif (Auth::user()->id == $event['user_id'])
             <x-secondary-button class="mt-3">
 
                 <a href="{{ route('event.edit', ['id' => $event['id']]) }}">Edit event</a>
@@ -39,11 +45,13 @@
             </x-secondary-button>
 
 
-            <x-primary-button class="mt-3">
+            <x-secondary-button class="mt-3">
 
                 <a href="/team/create/{{ $event['id'] }}">Register Teams</a>
 
-            </x-primary-button>
+            </x-secondary-button>
+
+
 
 
             <x-green-button class="mt-3">

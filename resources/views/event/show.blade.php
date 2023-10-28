@@ -9,8 +9,8 @@
 
         <div class="flex justify-center max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <div class="flex justify-center bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="flex ">
+            <div class="bg-gray-50 dark:bg-gray-900 overflow-hidden shadow-sm">
+                <div class="">
                     @if (count($teams) < 1)
 
                         <p class="px-9 py-9 md:text-dark dark:text-white">
@@ -41,8 +41,9 @@
                                 @endforeach
 
                                 @else
-                                @foreach ($rounds as $round)
-                                <tr @if ($round['match_point_winner'] == 1)
+                                @foreach ($total_rounds as $round)
+                                <tr
+                                @if ($round['match_point_winner'] == 1)
                                     class="text-center text-black dark:text-white bg-green-500"
                                     @endif
                                     class="text-center text-black dark:text-white even:bg-gray-300 odd:bg-gray-400 dark:even:bg-gray-700 dark:odd:bg-gray-800">
