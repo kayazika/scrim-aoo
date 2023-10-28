@@ -15,7 +15,14 @@ class TeamController extends Controller
     public function show($id)
     {
         $data = $this->teamService->show($id);
-        return view('event.show', ['event' => $data[0], 'teams' => $data[1], 'rounds' => $data[2]]);
+        return view('event.show', ['event' => $data[0], 'teams' => $data[1], 'rounds' => $data[2], 'total_rounds' => $data[3]]);
+    }
+
+    public function rounds($id)
+    {
+        $data = $this->teamService->show($id);
+        //dd($data);
+        return view('event.totalRounds', ['event' => $data[0], 'teams' => $data[1], 'rounds' => $data[2]]);
     }
 
     //call create teams view
