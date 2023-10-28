@@ -12,11 +12,9 @@ class RoundService
 
     public function create($id): array
     {
-        $event = Event::get()->where('id', $id)->toArray();
-        $team = Team::get()->where('event_id', $id)->toArray();
-        $teams = array_values($team);
-        //dd($teams);
-        return [$teams, $event];
+        $event = array_values(Event::get()->where('id', $id)->toArray());
+        $team = array_values(Team::get()->where('event_id', $id)->toArray());
+        return [$team, $event];
     }
 
     public function calculatePoints($position): int
