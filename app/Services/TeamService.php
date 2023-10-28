@@ -12,7 +12,7 @@ class TeamService
     {
         $events = Event::get()->where('id', $id)->first();
         $teams = Team::get()->where('event_id', $id)->toArray();
-        $total_rounds = TotalRound::where('event_id', $id)->orderBy('point', 'DESC',)->orderBy('kill', 'DESC',)->get()->toArray();
+        $total_rounds = TotalRound::where('event_id', $id)->orderBy('match_point_winner', 'DESC',)->orderBy('point', 'DESC',)->orderBy('kill', 'DESC',)->get()->toArray();
         $rounds = Round::where('event_id', $id)->orderBy('position', 'ASC',)->get()->groupBy('round')->toArray();
         //dd($total_rounds);
         $data = [$events, $teams, $rounds, $total_rounds];
