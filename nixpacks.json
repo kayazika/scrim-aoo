@@ -43,7 +43,7 @@
           "libmysqlclient",
           "php81Packages.composer",
           "nodejs_18",
-          "npm-10.2.0"
+          "npm-10_x"
         ],
         "nixLibs": [
           "libmysqlclient"
