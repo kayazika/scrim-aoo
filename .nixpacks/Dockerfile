@@ -17,7 +17,8 @@ ENV IS_LARAVEL=$IS_LARAVEL NIXPACKS_METADATA=$NIXPACKS_METADATA NIXPACKS_PHP_ROO
 # install phase
 COPY . /app/.
 RUN  mkdir -p /var/log/nginx && mkdir -p /var/cache/nginx
-RUN  composer install --ignore-platform-reqs
+#RUN  composer install --ignore-platform-reqs
+RUN  composer install
 RUN  npm ci
 
 # build phase
