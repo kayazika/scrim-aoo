@@ -1,6 +1,6 @@
 {
   "providers": [],
-  "buildImage": "ghcr.io/railwayapp/nixpacks:ubuntu-1699920194",
+  "buildImage": "ghcr.io/railwayapp/nixpacks:ubuntu",
   "variables": {
     "IS_LARAVEL": "yes",
     "NIXPACKS_METADATA": "php",
