@@ -1,5 +1,5 @@
 ARG PHP_VERSION
-FROM php:${PHP_VERSION}
+FROM php:8.2-cli
 
 ## Diretório da aplicação
 ARG APP_DIR=/var/www/app
@@ -9,7 +9,7 @@ ARG REDIS_LIB_VERSION=5.3.7
 
 ### apt-utils é um extensão de recursos do gerenciador de pacotes APT
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
-    apt-utils \ 
+    apt-utils \
     supervisor
 
 # dependências recomendadas de desenvolvido para ambiente linux
@@ -25,7 +25,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql pgsql session xml
 
 # habilita instalação do Redis
 RUN pecl install redis-${REDIS_LIB_VERSION} \
-    && docker-php-ext-enable redis 
+    && docker-php-ext-enable redis
 
 RUN docker-php-ext-install zip iconv simplexml pcntl gd fileinfo
 
