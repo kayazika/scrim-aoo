@@ -42,8 +42,8 @@
           "nginx",
           "libmysqlclient",
           "php81Packages.composer",
-          "nodejs_18",
-          "npm-9_10.2.4"
+          "nodejs_20.10.0",
+          "npm-9_x"
         ],
         "nixLibs": [
           "libmysqlclient"
