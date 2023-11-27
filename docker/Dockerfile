@@ -45,7 +45,7 @@ WORKDIR $APP_DIR
 RUN cd $APP_DIR
 RUN chown www-data:www-data $APP_DIR
 
-COPY --chown=www-data:www-data ./ $APP_DIR
+COPY --chown=www-data:www-data . $APP_DIR
 RUN rm -rf vendor
 RUN composer install --no-interaction
 RUN npm ci
