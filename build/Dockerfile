@@ -1,4 +1,4 @@
-FROM php:8.2.4-fpm-bullseye
+FROM php:8.2.13RC1-zts-bullseye
 
 ## Diretório da aplicação
 ARG APP_DIR=/var/www/app
