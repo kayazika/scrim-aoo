@@ -46,7 +46,8 @@ WORKDIR $APP_DIR
 RUN cd $APP_DIR
 RUN chown www-data:www-data $APP_DIR
 COPY $APP_ROOT $APP_DIR
-RUN composer ci
+RUN composer update
+RUN composer install
 RUN npm run build
 
 RUN apt-get install nginx -y
