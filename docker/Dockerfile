@@ -18,7 +18,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libpng-dev \
     libpq-dev \
-    libxml2-dev
+    libxml2-dev \
+    nodejs \
+    npm
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql pgsql session xml
 
@@ -46,7 +48,7 @@ RUN chown www-data:www-data $APP_DIR
 COPY --chown=www-data:www-data ./ $APP_DIR
 RUN rm -rf vendor
 RUN composer install --no-interaction
-RUN npm install
+RUN npm ci
 RUN npm run build
 
 RUN apt-get install nginx -y
