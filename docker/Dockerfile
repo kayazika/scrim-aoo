@@ -8,7 +8,7 @@ ARG REDIS_LIB_VERSION=5.3.7
 
 ### apt-utils é um extensão de recursos do gerenciador de pacotes APT
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
-    apt-utils \ 
+    apt-utils \
     supervisor
 
 # dependências recomendadas de desenvolvido para ambiente linux
@@ -24,7 +24,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql pgsql session xml
 
 # habilita instalação do Redis
 RUN pecl install redis-${REDIS_LIB_VERSION} \
-    && docker-php-ext-enable redis 
+    && docker-php-ext-enable redis
 
 RUN docker-php-ext-install zip iconv simplexml pcntl gd fileinfo
 
@@ -43,7 +43,7 @@ WORKDIR $APP_DIR
 RUN cd $APP_DIR
 RUN chown www-data:www-data $APP_DIR
 
-COPY --chown=www-data:www-data ./app .
+COPY --chown=www-data:www-data ./ $APP_DIR
 RUN rm -rf vendor
 RUN composer install --no-interaction
 
