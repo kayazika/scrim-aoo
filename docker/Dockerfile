@@ -19,8 +19,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libpq-dev \
     libxml2-dev \
-    nodejs \
-    npm
+    nodejs
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql pdo_pgsql pgsql session xml
 
