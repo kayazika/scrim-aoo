@@ -41,15 +41,14 @@ COPY ./build/supervisord/supervisord.conf /etc/supervisord.d/
 COPY ./build/php/extra-php.ini "$PHP_INI_DIR/99_extra.ini"
 COPY ./build/php/extra-php-fpm.conf /etc/php8/php-fpm.d/www.conf
 
-WORKDIR $APP_DIR
-RUN cd $APP_DIR
-RUN chown www-data:www-data $APP_DIR
+RUN cd ..
+RUN chown www-data:www-data .
 
-COPY --chown=www-data:www-data ../ $APP_DIR
-RUN rm -rf vendor
-RUN composer install --no-interaction
+
+RUN composer install
 RUN npm ci
 RUN npm run build
+COPY --chown=www-data:www-data ../ $APP_DIR
 
 RUN apt-get install nginx -y
 RUN rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
@@ -57,6 +56,6 @@ COPY ./build/nginx/sites.conf /etc/nginx/sites-enabled/default.conf
 COPY ./build/nginx/error.html /var/www/html/error.html
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-# RUN apt update -y && apt install nano git -y
+RUN apt update -y && apt install nano git -y
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
