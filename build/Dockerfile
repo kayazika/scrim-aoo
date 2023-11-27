@@ -33,13 +33,13 @@ RUN docker-php-ext-install zip iconv simplexml pcntl gd fileinfo
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY ./docker/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY ./docker/supervisord/supervisord.conf /etc/supervisord.d/
+COPY ./build/supervisord/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY ./build/supervisord/supervisord.conf /etc/supervisord.d/
 ### Supervisor permite monitorar e controlar vários processos (LINUX)
 ### Bastante utilizado para manter processos em Daemon, ou seja, executando em segundo plano
 
-COPY ./docker/php/extra-php.ini "$PHP_INI_DIR/99_extra.ini"
-COPY ./docker/php/extra-php-fpm.conf /etc/php8/php-fpm.d/www.conf
+COPY ./build/php/extra-php.ini "$PHP_INI_DIR/99_extra.ini"
+COPY ./build/php/extra-php-fpm.conf /etc/php8/php-fpm.d/www.conf
 
 WORKDIR $APP_DIR
 RUN cd $APP_DIR
@@ -53,8 +53,8 @@ RUN npm run build
 
 RUN apt-get install nginx -y
 RUN rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
-COPY ./docker/nginx/sites.conf /etc/nginx/sites-enabled/default.conf
-COPY ./docker/nginx/error.html /var/www/html/error.html
+COPY ./build/nginx/sites.conf /etc/nginx/sites-enabled/default.conf
+COPY ./build/nginx/error.html /var/www/html/error.html
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # RUN apt update -y && apt install nano git -y
