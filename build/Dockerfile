@@ -2,7 +2,7 @@ FROM php:8.2.4-fpm-bullseye
 
 ## Diretório da aplicação
 ARG APP_DIR=/var/www/app
-ARG APP_ROOT=/
+ARG APP_ROOT=./
 
 ## Versão da Lib do Redis para PHP
 ARG REDIS_LIB_VERSION=5.3.7
