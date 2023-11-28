@@ -43,9 +43,9 @@ COPY ./build/php/extra-php.ini "$PHP_INI_DIR/99_extra.ini"
 COPY ./build/php/extra-php-fpm.conf /etc/php8/php-fpm.d/www.conf
 
 WORKDIR $APP_DIR
-RUN cd $APP_DIR
 RUN chown www-data:www-data $APP_DIR
 COPY $APP_ROOT $APP_DIR
+RUN cd $APP_DIR
 RUN nodejs -v && npm -v
 RUN composer update
 RUN composer install
