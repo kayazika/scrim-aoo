@@ -33,6 +33,7 @@
       "cmds": [
         "mkdir -p /var/log/nginx && mkdir -p /var/cache/nginx",
         "composer install --ignore-platform-reqs",
+        "apt-get update",
         "apt-get install -y curl software-properties-common",
         "curl -sL https://deb.nodesource.com/setup_16.x | bash -",
         "apt-get install nodejs",
