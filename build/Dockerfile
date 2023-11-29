@@ -1,5 +1,5 @@
-ARG PHP_VERSION
 FROM php:8.2.4-zts-bullseye
+
 ## Diretório da aplicação
 ARG APP_DIR=/var/www/app
 
@@ -55,8 +55,6 @@ RUN composer install --no-interaction
 RUN npm install
 RUN npm run build
 
-RUN apt-get install nginx -y
-RUN rm -rf /etc/nginx/sites-enabled/* && rm -rf /etc/nginx/sites-available/*
 COPY ./docker/nginx/sites.conf /etc/nginx/sites-enabled/default.conf
 COPY ./docker/nginx/error.html /var/www/html/error.html
 
