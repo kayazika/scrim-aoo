@@ -55,8 +55,6 @@ RUN composer install --no-interaction
 RUN npm install
 RUN npm run build
 
-COPY ./docker/nginx/sites.conf /etc/nginx/sites-enabled/default.conf
-
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # RUN apt update -y && apt install nano git -y
 
