@@ -22,43 +22,48 @@
         </h2>
 
         @if (!Route::is('event.show'))
-            <x-primary-button class="mt-3">
+        <a href="{{ route('event.show', ['id' => $event['id']]) }}">
+        <x-primary-button class="mt-3">
 
-                <a href="{{ route('event.show', ['id' => $event['id']]) }}">back</a>
+
+            Table
 
             </x-primary-button>
+        </a>
         @endif
-
+        <a href="/event/rounds/{{ $event['id'] }}">
         <x-secondary-button class="mt-3">
 
-            <a href="/event/rounds/{{ $event['id'] }}">Rounds</a>
+            Rounds
 
         </x-secondary-button>
-
+    </a>
         {{-- @if (Auth::user()->id == $event['user_id']) --}}
         @if (Auth::guest())
         @elseif (Auth::user()->id == $event['user_id'])
-            <x-secondary-button class="mt-3">
+        <a href="{{ route('event.edit', ['id' => $event['id']]) }}">
+        <x-secondary-button class="mt-3">
 
-                <a href="{{ route('event.edit', ['id' => $event['id']]) }}">Edit event</a>
-
-            </x-secondary-button>
-
-
-            <x-secondary-button class="mt-3">
-
-                <a href="/team/create/{{ $event['id'] }}">Register Teams</a>
+                Edit event
 
             </x-secondary-button>
+        </a>
+        <a href="/team/create/{{ $event['id'] }}">
+            <x-secondary-button class="mt-3">
+
+                Register Teams
+
+            </x-secondary-button>
+        </a>
 
 
-
-
+        <a href="/event/round/{{ $event['id'] }}">
             <x-green-button class="mt-3">
 
-                <a href="/event/round/{{ $event['id'] }}">New round</a>
+                New round
 
             </x-green-button>
+        </a>
         @endif
 
     </div>
